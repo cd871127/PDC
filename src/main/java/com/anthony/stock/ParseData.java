@@ -1,5 +1,7 @@
 package com.anthony.stock;
 
+import com.anthony.net.HttpRequest;
+
 import java.util.List;
 
 /**
@@ -12,22 +14,10 @@ import java.util.List;
  */
 public class ParseData {
 
-    private String[] data;
 
-    public ParseData(String[] data)
-    {
-        this.data=data;
-    }
-
-    public ParseData(String data)
-    {
-        this.data=data.split("\\n");
-    }
-
-    public ParseData(List<String> data)
-    {}
 
     private final static String[] title= {"今开","昨收","现价","最高","最低","竞买价","竞卖价","成交量","成交额","买1","买1金额","买2","买2金额","买3","买3金额","买4","买4金额","买5","买5金额","卖1","卖1金额","卖2","卖2金额","卖3","卖3金额","卖4","卖4金额","卖5","卖5金额","日期","时间"};
+
 
 
 
