@@ -12,7 +12,7 @@ public class StockDTO implements Serializable {
     
     private static final long serialVersionUID = 1L;
 
-    private int stockId;//股票代码
+    private String stockId;//股票代码
     private String stockName;//股票名字
     private BigDecimal openingPrice; //今开
     private BigDecimal closingPrice; //昨收
@@ -43,11 +43,11 @@ public class StockDTO implements Serializable {
     private BigDecimal salePrice5; //卖5金额
     private Date dateTime; //时间
 
-    public int getStockId() {
+    public String getStockId() {
         return stockId;
     }
 
-    public void setStockId(int stockId) {
+    public void setStockId(String stockId) {
         this.stockId = stockId;
     }
 
