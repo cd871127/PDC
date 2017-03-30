@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 /**
  * Created by chend on 2017/3/26.
  */
+
 @ComponentScan
 @EnableAutoConfiguration
 public class PdcApplication {

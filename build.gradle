@@ -42,7 +42,8 @@ dependencies {
     testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.5.2.RELEASE'
 }
 
-mainClassName = 'com.anthony.PdcApplication'
+//mainClassName = 'com.anthony.PdcApplication'
+mainClassName = 'com.anthony.Main'
 
 jar {
     manifest {
