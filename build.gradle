@@ -4,6 +4,7 @@ version '0.1'
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'application'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 
 
@@ -14,6 +15,7 @@ buildscript {
         }
         dependencies {
             classpath "org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE"
+            classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.4'
         }
     }
 }

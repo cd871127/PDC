@@ -4,34 +4,38 @@ import com.anthony.net.HttpRequest;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
  * Created by chendong239 on 2017-03-24.
  */
+//5500621
 public class Main {
     public static void main(String[] args) throws IOException {
-        FileWriter fw = new FileWriter("C:\\Users\\chend\\Desktop\\2.sql",false);
+        HttpRequest request=new HttpRequest();
+        String url="http://www.23us.cc/html/103/103035/%s.html";
+        String nextPage="5500621";
+        Scanner scanner=new Scanner(System.in);
+        String flag;
+        do {
+            String target= String.format(url, nextPage);
+            String content=request.get(target);
+            String title=content.substring(content.indexOf("<title>")+"<title>".length());
+            title=title.substring(0,title.indexOf("</title>"));
 
-        String template="insert into test_index(noindex_int,index_int,index_text,noindex_text) values";
+            String mainText=content.substring(content.indexOf("<div id=\"content\">")+"<div id=\"content\">".length()-1);
+            mainText=mainText.substring(0,mainText.indexOf("</div>"));
+            mainText=mainText.replaceAll("<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;","\n\n");
+            System.out.println(mainText);
+            System.out.println(title);
+            nextPage=content.substring(content.indexOf("var nextpage =")+"var nextpage =".length());
+            nextPage=nextPage.substring(0+2,nextPage.indexOf(".html"));
+            System.out.println(nextPage);
+            flag=scanner.nextLine();
+        }while(!"quit".equals(flag));
 
-        fw.write(template);
-
-        String values="(%d,%d,\'%s\',\'%s\')";
-
-        final int max=100000;
-
-        for(int i=max+1;i<=max+max;++i) {
-            String tmp = String.format(values, i, i, i, i);
-            if(max+max>i)
-                tmp+=",";
-            else
-                tmp+=";";
-            fw.write(tmp);
-        }
-        fw.close();
     }
 
     static void parse(String line)
