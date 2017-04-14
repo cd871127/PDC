@@ -16,8 +16,10 @@ public class Main {
     public static void main(String[] args) throws IOException {
         HttpRequest request=new HttpRequest();
         String url="http://www.23us.cc/html/103/103035/%s.html";
-        String nextPage="5500621";
+
         Scanner scanner=new Scanner(System.in);
+        String nextPage=scanner.nextLine();
+//        String nextPage="5530801";
         String flag;
         do {
             String target= String.format(url, nextPage);
@@ -27,7 +29,8 @@ public class Main {
 
             String mainText=content.substring(content.indexOf("<div id=\"content\">")+"<div id=\"content\">".length()-1);
             mainText=mainText.substring(0,mainText.indexOf("</div>"));
-            mainText=mainText.replaceAll("<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;","\n\n");
+            mainText=mainText.replaceAll("<br/>","\n");
+            mainText=mainText.replaceAll("&nbsp;"," ");
             System.out.println(mainText);
             System.out.println(title);
             nextPage=content.substring(content.indexOf("var nextpage =")+"var nextpage =".length());

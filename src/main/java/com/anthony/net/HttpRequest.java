@@ -16,6 +16,8 @@ import java.io.IOException;
  */
 public class HttpRequest {
 
+    private int count = 1;
+
     public String get(String url) {
         CloseableHttpClient httpClient = HttpClients.createDefault();
 //        String url = "http://hq.sinajs.cn/list=sh000001,sh600284,sh603227";
@@ -37,10 +39,19 @@ public class HttpRequest {
                 resultStr = EntityUtils.toString(result.getEntity(), "utf-8");
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            if (count <= 5) {
+                System.out.println("第" + count++ + "次重试");
+                get(url);
+            }
+            else {
+                e.printStackTrace();
+                System.out.println(url);
+            }
+
         } finally {
             httpGet.releaseConnection();
         }
+        count = 1;
         return resultStr;
     }
 
