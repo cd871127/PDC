@@ -24,6 +24,8 @@ public class Main {
         do {
             String target= String.format(url, nextPage);
             String content=request.get(target);
+            if(content==null)
+                System.out.println(url);
             String title=content.substring(content.indexOf("<title>")+"<title>".length());
             title=title.substring(0,title.indexOf("</title>"));
 
