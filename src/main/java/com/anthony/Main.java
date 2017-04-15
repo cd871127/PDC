@@ -14,6 +14,25 @@ import java.util.regex.Pattern;
 //5500621
 public class Main {
     public static void main(String[] args) throws IOException {
+    }
+
+    static void parse(String line)
+    {
+        String tmp[]=line.split("\"");
+        String code=filter("[^0-9]",tmp[0]);
+        String[] datas=tmp[1].split(",");
+        System.out.println(Arrays.asList(datas));
+    }
+
+    static String filter(String regex,String str)
+    {
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(str);
+        return matcher.replaceAll("").trim();
+    }
+
+    static void readText()
+    {
         HttpRequest request=new HttpRequest();
         String url="http://www.23us.cc/html/103/103035/%s.html";
 
@@ -41,20 +60,5 @@ public class Main {
             flag=scanner.nextLine();
         }while(!"quit".equals(flag));
 
-    }
-
-    static void parse(String line)
-    {
-        String tmp[]=line.split("\"");
-        String code=filter("[^0-9]",tmp[0]);
-        String[] datas=tmp[1].split(",");
-        System.out.println(Arrays.asList(datas));
-    }
-
-    static String filter(String regex,String str)
-    {
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(str);
-        return matcher.replaceAll("").trim();
     }
 }
