@@ -15,6 +15,7 @@ public class LoginController {
     @RequestMapping("/aa")
     public String userLogin()
     {
+        System.out.println("aaaaa");
         return userService.getUser().get(0).toString();
     }
 
