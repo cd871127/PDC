@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * Created by chend on 2017/4/15.
  */
@@ -13,8 +15,10 @@ public class LoginController {
     @Autowired
     UserService userService;
     @RequestMapping("/aa")
-    public String userLogin()
+    public String userLogin(HttpServletResponse response)
     {
+//        response.setStatus(400);
+//        return null;
         System.out.println("aaaaa");
         return userService.getUser().get(0).toString();
     }
