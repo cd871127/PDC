@@ -10,15 +10,15 @@ public class SystemConfigParameter {
         return instance;
     }
 
-    private int tokenExpireTime;//用户登录验证的token过期时间,单位:分
+    private Integer tokenExpireTime=30;//用户登录验证的token过期时间,单位:分
 
 
 
-    public int getTokenExpireTime() {
+    public Integer getTokenExpireTime() {
         return tokenExpireTime;
     }
 
-    public SystemConfigParameter setTokenExpireTime(int tokenExpireTime) {
+    public SystemConfigParameter setTokenExpireTime(Integer tokenExpireTime) {
         this.tokenExpireTime = tokenExpireTime;
         return instance;
     }
