@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 
@@ -21,7 +22,7 @@ public class LoginController {
     UserService userService;
 
     @RequestMapping("/login/{userName}/{password}")
-    public Object login(@PathVariable String userName, @PathVariable String password, HttpServletResponse response) {
+    public Object login(@PathVariable String userName, @PathVariable String password, HttpServletRequest request, HttpServletResponse response) {
         HashMap<String, String> paraMap = new HashMap<>();
         paraMap.put("userName", userName);
         paraMap.put("password", password);
@@ -30,8 +31,8 @@ public class LoginController {
             return "登录失败";
         }
         Cookie cookie = new Cookie("token", userDTO.getToken());
-        System.out.println("新用户登录:" + userDTO.getToken());
         cookie.setPath("/");
+        System.out.println("新用户登录:" + userDTO.getToken());
         response.addCookie(cookie);
         return userDTO;
     }
