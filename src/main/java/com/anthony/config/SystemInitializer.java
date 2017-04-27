@@ -1,8 +1,14 @@
 package com.anthony.config;
 
 import java.io.*;
-import java.lang.reflect.*;
-import java.util.*;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Properties;
 
 /**
  * Created by CHENDONG239 on 2017-04-26.
@@ -18,7 +24,12 @@ public class SystemInitializer {
         return instance;
     }
 
+    public static void main(String[] args)  {
+        SystemInitializer systemInitializer = SystemInitializer.getInstance();
+        systemInitializer.showParaMeter();
+    }
 
+    //读取配置文件
     public Properties loadParameter() {
 
         final String propertiesFileName = "pdc.properties";
@@ -49,24 +60,24 @@ public class SystemInitializer {
                     Class<?> paraClass = para[0];
 
                     Constructor<?> constructor = paraClass.getConstructor(String.class);
-                    Object[] paramter = new Object[1];
-                    paramter[0] = constructor.newInstance(proMap.get(methodName));
-                    methods[i].invoke(SystemConfigParameter.getInstance(), paramter);
+                    Object[] parameter = new Object[1];
+                    parameter[0] = constructor.newInstance(proMap.get(methodName));
+                    methods[i].invoke(SystemConfigParameter.getInstance(), parameter);
                 } else {
                     continue;
                 }
             }
 //
-        } catch (FileNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+        } catch (FileNotFoundException e) {
             System.out.println("配置文件文件不存在，创建默认配置文件");
             createPropertiesFile(propertiesFileName);
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (IOException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
         return properties;
     }
 
+    //创建配置文件,把默认值写入
     private void createPropertiesFile(String propertiesFileName) {
         File file = new File(propertiesFileName);
         try {
@@ -87,6 +98,7 @@ public class SystemInitializer {
         }
     }
 
+    //拿到系统当前的参数
     private HashMap<String, String> getCurrentProperties() {
         HashMap<String, String> properties = new HashMap<>();
         Class<?> classInfo = SystemConfigParameter.class;
@@ -114,39 +126,22 @@ public class SystemInitializer {
         return properties;
     }
 
+    //显示系统参数
     public void showParaMeter() {
         Class<?> classInfo = SystemConfigParameter.class;
         Method[] methods = classInfo.getMethods();
         for (int i = 0; i != methods.length; ++i) {
-            Class<?> para[] = methods[i].getParameterTypes();
             String methodName = methods[i].getName();
-            System.out.println(methodName);
-//            if("wait".equals(methodName)||"equals".equals(methodName))
-//                continue;
-//            if (0 == para.length) {
-//                Class<?> paraClass = para[0];
-//
-//                Constructor<?> constructor = paraClass.getConstructor(String.class);
-//                Object[] paramter=new Object[1];
-//                paramter[0]=constructor.newInstance(proMap.get(methodName));
-//                methods[i].invoke(SystemConfigParameter.getInstance(),paramter);
-//        }
-//        else{
-//            continue;
-//
-        }
-//    catch (FileNotFoundException|NoSuchMethodException|InstantiationException|IllegalAccessException|InvocationTargetException e) {
-//        System.out.println("配置文件文件不存在，创建默认配置文件");
-//        createPropertiesFile(propertiesFileName);
-//        e.printStackTrace();
-//    } catch (IOException e) {
-//        e.printStackTrace();
-//    }
-    }
+            if (methodName.indexOf("get") != 0 || "getInstance".equals(methodName) || "getClass".equals(methodName))
+                continue;
 
-    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
-        SystemInitializer systemInitializer = SystemInitializer.getInstance();
-        System.out.println(SystemConfigParameter.getInstance().getTokenExpireTime());
-        systemInitializer.showParaMeter();
+            try {
+                System.out.println(methodName.substring(3) + "=" + methods[i].invoke(SystemConfigParameter.getInstance()));
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
+            }
+
+        }
+
     }
 }
