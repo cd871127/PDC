@@ -9,7 +9,7 @@ import java.util.Date;
  * Created by chendong239 on 2017-03-24.
  */
 public class StockDTO implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
 
     private String stockId;//股票代码

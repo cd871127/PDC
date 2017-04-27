@@ -14,7 +14,7 @@ public class CommonFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        String userName=request.getParameter("userName");
+        String userName = request.getParameter("userName");
         chain.doFilter(request, response);
     }
 

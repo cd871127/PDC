@@ -42,8 +42,7 @@ public class HttpRequest {
             if (count <= 5) {
                 System.out.println("第" + count++ + "次重试");
                 get(url);
-            }
-            else {
+            } else {
                 e.printStackTrace();
                 System.out.println(url);
             }

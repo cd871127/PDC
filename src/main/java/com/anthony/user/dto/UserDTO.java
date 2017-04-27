@@ -10,18 +10,16 @@ import java.util.Date;
  */
 public class UserDTO implements Serializable {
 
-    UserDTO()
-    {
-        setActiveTime(new Date());
-        setTimeOut(SystemConfigParameter.getInstance().getTokenExpireTime());
-    }
-
     private String userName;
     private String password;
     private String userType;
     private Date activeTime;
     private int timeOut;
     private String token;
+    UserDTO() {
+        setActiveTime(new Date());
+        setTimeOut(SystemConfigParameter.getInstance().getTokenExpireTime());
+    }
 
     public String getUserName() {
         return userName;

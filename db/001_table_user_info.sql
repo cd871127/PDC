@@ -20,6 +20,8 @@ SELECT
 FROM user_info_tbl;
 
 
-select count(1) from user_info_tbl WHERE user_name='cd' AND pass_word='123';
+SELECT count(1)
+FROM user_info_tbl
+WHERE user_name = 'cd' AND pass_word = '123';
 
 

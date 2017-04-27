@@ -15,9 +15,8 @@ import java.util.Properties;
  */
 public class SystemInitializer {
 
-    private final String propertiesFileName = "pdc.properties";
-
     private static SystemInitializer instance = new SystemInitializer();
+    private final String propertiesFileName = "pdc.properties";
 
     private SystemInitializer() {
         loadParameter();
@@ -27,8 +26,7 @@ public class SystemInitializer {
         return instance;
     }
 
-    public void init()
-    {
+    public void init() {
         loadParameter();
         showParaMeter();
     }

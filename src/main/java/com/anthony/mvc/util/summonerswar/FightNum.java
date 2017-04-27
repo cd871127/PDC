@@ -14,6 +14,6 @@ public class FightNum {
     }
 
     public static int getFightNum(MonsterFightTimeDTO monsterFightTimeDTO) {
-        return getFightNum(monsterFightTimeDTO.getStar(),monsterFightTimeDTO.getCurLevel(),monsterFightTimeDTO.getCurExp(),monsterFightTimeDTO.getFightExp());
+        return getFightNum(monsterFightTimeDTO.getStar(), monsterFightTimeDTO.getCurLevel(), monsterFightTimeDTO.getCurExp(), monsterFightTimeDTO.getFightExp());
     }
 }

@@ -11,7 +11,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  */
 public class UserContainer {
     private static UserContainer instance = new UserContainer();
-    ReadWriteLock rwl = new ReentrantReadWriteLock();
+    private ReadWriteLock rwl = new ReentrantReadWriteLock();
     private HashMap<String, UserDTO> userMap = new HashMap<>();
 
     private UserContainer() {

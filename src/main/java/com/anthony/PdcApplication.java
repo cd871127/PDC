@@ -12,12 +12,12 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan
 @EnableAutoConfiguration
 public class PdcApplication {
-        public static void main(String[] args) throws Exception {
-            SystemInitializer.getInstance().init();
-            //通过SpringApplication的run()方法启动应用，无需额外的配置其他的文件
-            SpringApplication.run(PdcApplication.class, args);
-        }
-
+    public static void main(String[] args) throws Exception {
+        SystemInitializer.getInstance().init();
+        //通过SpringApplication的run()方法启动应用，无需额外的配置其他的文件
+        SpringApplication.run(PdcApplication.class, args);
     }
+
+}
 //http://ourjs.com/detail/529ca5950cb6498814000005
 

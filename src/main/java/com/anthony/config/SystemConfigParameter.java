@@ -5,14 +5,14 @@ package com.anthony.config;
  */
 public class SystemConfigParameter {
     private static SystemConfigParameter instance = new SystemConfigParameter();
-    private SystemConfigParameter (){}
+    private Integer tokenExpireTime = 30;//用户登录验证的token过期时间,单位:分
+
+    private SystemConfigParameter() {
+    }
+
     public static SystemConfigParameter getInstance() {
         return instance;
     }
-
-    private Integer tokenExpireTime=30;//用户登录验证的token过期时间,单位:分
-
-
 
     public Integer getTokenExpireTime() {
         return tokenExpireTime;

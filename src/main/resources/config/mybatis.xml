@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <!--<typeAliases>-->
-        <!--<package name="sample.mybatis.domain"/>-->
+    <!--<package name="sample.mybatis.domain"/>-->
     <!--</typeAliases>-->
     <typeAliases>
         <typeAlias type="com.anthony.user.dto.UserDTO" alias="userDTO"/>

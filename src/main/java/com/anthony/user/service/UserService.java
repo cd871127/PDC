@@ -28,7 +28,7 @@ public class UserService {
         }
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
-            String originToken=userDTO.getUserName()+userDTO.getActiveTime();
+            String originToken = userDTO.getUserName() + userDTO.getActiveTime();
             md.update(originToken.getBytes());
             userDTO.setToken(new BigInteger(1, md.digest()).toString(16));
         } catch (NoSuchAlgorithmException e) {

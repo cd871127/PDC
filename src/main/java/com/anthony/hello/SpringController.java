@@ -1,9 +1,7 @@
 package com.anthony.hello;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.*;
-import org.springframework.boot.autoconfigure.*;
-import org.springframework.stereotype.*;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 //表明这是一个 Controller
 //@Controller
@@ -34,8 +32,7 @@ public class SpringController {
 
 }
 
-class Dto
-{
+class Dto {
     String name;
     int age;
 
