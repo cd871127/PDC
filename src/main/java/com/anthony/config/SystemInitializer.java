@@ -14,6 +14,9 @@ import java.util.Properties;
  * Created by CHENDONG239 on 2017-04-26.
  */
 public class SystemInitializer {
+
+    private final String propertiesFileName = "pdc.properties";
+
     private static SystemInitializer instance = new SystemInitializer();
 
     private SystemInitializer() {
@@ -24,15 +27,14 @@ public class SystemInitializer {
         return instance;
     }
 
-    public static void main(String[] args)  {
-        SystemInitializer systemInitializer = SystemInitializer.getInstance();
-        systemInitializer.showParaMeter();
+    public void init()
+    {
+        loadParameter();
+        showParaMeter();
     }
 
     //读取配置文件
     public Properties loadParameter() {
-
-        final String propertiesFileName = "pdc.properties";
         Properties properties = new Properties();
         System.out.println("开始读取配置文件:" + propertiesFileName);
         try (FileInputStream in = new FileInputStream(propertiesFileName)) {

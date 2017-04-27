@@ -1,5 +1,6 @@
 package com.anthony.user.dao;
 
+import com.anthony.user.dto.UserDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.HashMap;
@@ -9,5 +10,5 @@ import java.util.HashMap;
  */
 @Mapper
 public interface UserDAO {
-    boolean isUserPasswordRight(HashMap paraMap);
+    UserDTO getUserInfoByUserName(HashMap paraMap);
 }

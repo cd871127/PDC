@@ -1,11 +1,11 @@
 package com.anthony.config;
 
+import com.anthony.config.filter.LoginFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by CHENDONG239 on 2017-04-25.
@@ -20,7 +20,7 @@ public class FilterConfig {
         registrationBean.setFilter(loginFilter);
         registrationBean.setOrder(1);
         ArrayList<String> urlList = new ArrayList<>();
-        urlList.add("/*");
+        urlList.add("/login/*");
         registrationBean.setUrlPatterns(urlList);
         return registrationBean;
     }

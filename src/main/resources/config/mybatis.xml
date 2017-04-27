@@ -7,7 +7,7 @@
         <!--<package name="sample.mybatis.domain"/>-->
     <!--</typeAliases>-->
     <typeAliases>
-        <package name="com.anthony.*.DTO"/>
+        <typeAlias type="com.anthony.user.dto.UserDTO" alias="userDTO"/>
     </typeAliases>
     <mappers>
         <mapper resource="mapper/user-mapper.xml"/>

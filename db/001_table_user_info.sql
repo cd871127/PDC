@@ -1,11 +1,10 @@
+DROP TABLE user_info_tbl;
 CREATE TABLE user_info_tbl
 (
   user_id      INT PRIMARY KEY NOT NULL,
   user_name    VARCHAR(32)     NOT NULL,
   pass_word    VARCHAR(255)    NOT NULL,
   user_type    VARCHAR(1)      NOT NULL, --'0' 管理员用户 '1' 普通用户 '2' 外部应用用户
-  user_token   VARCHAR(512),
-  token_expire INTEGER,
   created_date INTEGER DEFAULT current_date
 );
 

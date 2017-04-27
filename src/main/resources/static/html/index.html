@@ -42,7 +42,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-default">Sign in</button>
+                                <button type="submit" class="btn btn-default" onclick="signIn()">Sign in</button>
                             </div>
                         </div>
                     </form>
@@ -52,4 +52,36 @@
             </div>
         </div>
     </body>
+
+<script type="text/javascript">
+    function signIn()
+    {
+        var token=getCookie('token');
+        alert(token);
+        var settings = {
+            type: "GET",
+            url:"login/cd/123",
+
+            success: function(data) {
+//               alert(data);
+            },
+            headers: {
+                "token":token
+            }
+        };
+        $.get(settings);
+
+    }
+
+    function getCookie(name)
+    {
+        var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)"); //正则匹配
+        if(arr=document.cookie.match(reg)){
+            return decodeURI(arr[2]);
+        }
+        else{
+            return null;
+        }
+    }
+</script>
 </html>

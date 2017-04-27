@@ -1,9 +1,14 @@
 package com.anthony.user.service;
 
+import com.anthony.common.UserContainer;
 import com.anthony.user.dao.UserDAO;
+import com.anthony.user.dto.UserDTO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 
 /**
@@ -15,9 +20,21 @@ public class UserService {
     @Resource
     UserDAO userDAO;
 
-    public String Login(HashMap paraMap) {
-        boolean flag=userDAO.isUserPasswordRight(paraMap);
-        System.out.println(flag);
-        return null;
+    public UserDTO Login(HashMap paraMap) {
+        UserDTO userDTO = userDAO.getUserInfoByUserName(paraMap);
+        if (null == userDTO) {
+            //登录失败
+            return null;
+        }
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            String originToken=userDTO.getUserName()+userDTO.getActiveTime();
+            md.update(originToken.getBytes());
+            userDTO.setToken(new BigInteger(1, md.digest()).toString(16));
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        UserContainer.getInstance().addUser(userDTO);
+        return userDTO;
     }
 }

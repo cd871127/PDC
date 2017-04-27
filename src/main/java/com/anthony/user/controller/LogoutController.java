@@ -1,5 +1,6 @@
 package com.anthony.user.controller;
 
+import com.anthony.common.UserContainer;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class LogoutController {
-    @RequestMapping("/login/{userName}")
-    public void login(@PathVariable String userName)
+    @RequestMapping("/logout/{userName}")
+    public void logout(@PathVariable String userName)
     {
-        System.out.println(userName);
+//        UserContainer.getInstance().getUserMap().remove(userName);
     }
 }
