@@ -1,5 +1,6 @@
 package com.anthony.user.controller;
 
+import com.anthony.common.UserManager;
 import com.anthony.user.dto.UserDTO;
 import com.anthony.user.service.UserService;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,14 +27,13 @@ public class LoginController {
         HashMap<String, String> paraMap = new HashMap<>();
         paraMap.put("userName", userName);
         paraMap.put("password", password);
-        UserDTO userDTO = userService.Login(paraMap);
+
+        UserDTO userDTO = userService.userLogin(paraMap);
         if (null == userDTO) {
             return "登录失败";
         }
-        Cookie cookie = new Cookie("token", userDTO.getToken());
-        cookie.setPath("/");
         System.out.println("新用户登录:" + userDTO.getToken());
-        response.addCookie(cookie);
+        System.out.println(UserManager.getInstance().getUserMap().size());
         return userDTO;
     }
 }

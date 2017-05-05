@@ -11,6 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class LogoutController {
     @RequestMapping("/logout/{userName}")
     public void logout(@PathVariable String userName) {
-//        UserContainer.getInstance().getUserMap().remove(userName);
+//        UserManager.getInstance().getUserMap().remove(userName);
     }
 }

@@ -42,7 +42,8 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default" onclick="signIn()">Sign in</button>
+                        <button type="button" class="btn btn-default" onclick="signIn()">button</button>
+                        <button type="submit" class="btn btn-default" onclick="signIn()">submit</button>
                     </div>
                 </div>
             </form>
@@ -55,14 +56,25 @@
 
 <script type="text/javascript">
     function signIn() {
-        var token = getCookie('token');
-        alert(token);
-        var settings = {
+        let localStorage=window.sessionStorage;
+        let token=localStorage['token'];
+
+        let settings = {
             type: "GET",
             url: "login/cd/123",
-
-            success: function (data) {
-//               alert(data);
+            async: false,
+            success: function (data,textStatus,jqXHR) {
+                console.log(data);
+                console.log(textStatus);
+                console.log(jqXHR);
+                alert(jqXHR.status);
+                if(typeof data.token!='undefined')
+                    localStorage['token']=data.token;
+            },
+            error: function (xhr){
+                console.log(xhr)
+                alert(xhr.status);
+                alert('error');
             },
             headers: {
                 "token": token
@@ -72,14 +84,6 @@
 
     }
 
-    function getCookie(name) {
-        var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)"); //正则匹配
-        if (arr = document.cookie.match(reg)) {
-            return decodeURI(arr[2]);
-        }
-        else {
-            return null;
-        }
-    }
+
 </script>
 </html>

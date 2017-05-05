@@ -9,16 +9,16 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 /**
  * Created by CHENDONG239 on 2017-04-27.
  */
-public class UserContainer {
-    private static UserContainer instance = new UserContainer();
+public class UserManager {
+    private static UserManager instance = new UserManager();
     private ReadWriteLock rwl = new ReentrantReadWriteLock();
     private HashMap<String, UserDTO> userMap = new HashMap<>();
 
-    private UserContainer() {
+    private UserManager() {
     }
 
 
-    public static UserContainer getInstance() {
+    public static UserManager getInstance() {
         return instance;
     }
 

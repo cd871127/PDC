@@ -1,6 +1,6 @@
 package com.anthony.config.filter;
 
-import com.anthony.common.UserContainer;
+import com.anthony.common.UserManager;
 import com.anthony.user.dto.UserDTO;
 
 import javax.servlet.*;
@@ -22,13 +22,13 @@ public class LoginFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         String token = req.getHeader("token");
-        UserDTO userDTO = UserContainer.getInstance().getUserByToken(token);
+        System.out.println("token:"+token);
+        UserDTO userDTO = UserManager.getInstance().getUserByToken(token);
 
-//        HttpServletResponse res=(HttpServletResponse)response;
-//        res.setStatus(500);
-//        return;
-        if (null == userDTO)
+        if (null == userDTO) {
+            System.out.println("新用户登录,跳转");
             chain.doFilter(request, response);
+        }
         else {
             System.out.println("用户已登录:" + userDTO);
         }

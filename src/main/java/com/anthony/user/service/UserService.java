@@ -1,6 +1,6 @@
 package com.anthony.user.service;
 
-import com.anthony.common.UserContainer;
+import com.anthony.common.UserManager;
 import com.anthony.user.dao.UserDAO;
 import com.anthony.user.dto.UserDTO;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class UserService {
     @Resource
     UserDAO userDAO;
 
-    public UserDTO Login(HashMap paraMap) {
+    public UserDTO userLogin(HashMap paraMap) {
         UserDTO userDTO = userDAO.getUserInfoByUserName(paraMap);
         if (null == userDTO) {
             //登录失败
@@ -34,7 +34,8 @@ public class UserService {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        UserContainer.getInstance().addUser(userDTO);
+        UserManager.getInstance().addUser(userDTO);
         return userDTO;
     }
+
 }
