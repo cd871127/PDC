@@ -32,9 +32,9 @@ public class UserManager {
         rwl.writeLock().unlock();
     }
 
-    public void removeUser(UserDTO userDTO) {
+    public void removeUser(String token) {
         rwl.writeLock().lock();
-        userMap.remove(userDTO.getToken());
+        userMap.remove(token);
         rwl.writeLock().unlock();
     }
 

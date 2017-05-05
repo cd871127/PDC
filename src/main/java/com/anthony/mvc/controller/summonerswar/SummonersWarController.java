@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Created by chend on 2017/4/16.
  */
-@RestController
+//@RestController
 public class SummonersWarController {
     @RequestMapping(value = "test")
     public int calculateFightTimes(MonsterFightTimeDTO monsterFightTimeDTO) {

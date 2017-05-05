@@ -1,5 +1,5 @@
-var jsPath="js/common/";
-var cssPath="css/";
+var jsPath="/js/common/";
+var cssPath="/css/";
 
 
 document.write('<link href='+cssPath+'bootstrap.css rel="stylesheet">');

@@ -5,12 +5,14 @@ import com.anthony.user.dto.UserDTO;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
  * Created by CHENDONG239 on 2017-04-25.
+ * 判断用户是否登录
  */
-public class LoginFilter implements Filter {
+public class IsLoginFilter implements Filter {
 
 
     @Override
@@ -22,15 +24,13 @@ public class LoginFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         String token = req.getHeader("token");
-        System.out.println("token:"+token);
         UserDTO userDTO = UserManager.getInstance().getUserByToken(token);
-
         if (null == userDTO) {
-            System.out.println("新用户登录,跳转");
-            chain.doFilter(request, response);
+            ((HttpServletResponse)response).sendRedirect("testReact");
         }
         else {
             System.out.println("用户已登录:" + userDTO);
+            chain.doFilter(request, response);
         }
     }
 

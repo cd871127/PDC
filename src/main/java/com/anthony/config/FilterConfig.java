@@ -1,6 +1,6 @@
 package com.anthony.config;
 
-import com.anthony.config.filter.LoginFilter;
+import com.anthony.config.filter.IsLoginFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,12 +15,12 @@ public class FilterConfig {
     @Bean
     public FilterRegistrationBean greetingFilterRegistrationBean() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean();
-        registrationBean.setName("greeting");
-        LoginFilter loginFilter = new LoginFilter();
-        registrationBean.setFilter(loginFilter);
+        registrationBean.setName("isLoginFilter");
+        IsLoginFilter isLoginFilter = new IsLoginFilter();
+        registrationBean.setFilter(isLoginFilter);
         registrationBean.setOrder(1);
         ArrayList<String> urlList = new ArrayList<>();
-        urlList.add("/login/*");
+        urlList.add("/user/*");
         registrationBean.setUrlPatterns(urlList);
         return registrationBean;
     }
