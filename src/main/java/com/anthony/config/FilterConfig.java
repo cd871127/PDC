@@ -20,7 +20,7 @@ public class FilterConfig {
         registrationBean.setFilter(isLoginFilter);
         registrationBean.setOrder(1);
         ArrayList<String> urlList = new ArrayList<>();
-        urlList.add("/user/*");
+        urlList.add("/login/*");
         registrationBean.setUrlPatterns(urlList);
         return registrationBean;
     }

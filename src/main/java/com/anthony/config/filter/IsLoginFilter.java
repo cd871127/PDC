@@ -25,13 +25,14 @@ public class IsLoginFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         String token = req.getHeader("token");
         UserDTO userDTO = UserManager.getInstance().getUserByToken(token);
-        if (null == userDTO) {
-            ((HttpServletResponse)response).sendRedirect("testReact");
-        }
-        else {
-            System.out.println("用户已登录:" + userDTO);
-            chain.doFilter(request, response);
-        }
+        chain.doFilter(request, response);
+//        if (null == userDTO) {
+//            ((HttpServletResponse)response).sendRedirect("testReact");
+//        }
+//        else {
+//            System.out.println("用户已登录:" + userDTO);
+//            chain.doFilter(request, response);
+//        }
     }
 
     @Override

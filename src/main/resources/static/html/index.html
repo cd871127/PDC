@@ -63,20 +63,26 @@
         let settings = {
             type: "GET",
             url: "login/cd/123",
-            async: false,
+            async: true,
             success: function (data,textStatus,jqXHR) {
+                if(jqXHR.status=='200'||jqXHR.status=='400')
+                    alert(1);
+                else
+                    alert(0);
                 console.log(data);
                 console.log(textStatus);
                 console.log(jqXHR);
-                alert(jqXHR.status);
+                alert(1);
                 if(typeof data.token!='undefined')
                     localStorage['token']=data.token;
             },
-            error: function (xhr){
-                console.log(xhr)
-                alert(xhr.status);
-                alert('error');
-            },
+//            error: function (xhr){
+//                debugger
+//                alert(0);
+//                console.log(xhr)
+//                alert(xhr.status);
+//                alert('error');
+//            },
             headers: {
                 "token": token
             }
