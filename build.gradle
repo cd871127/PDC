@@ -34,7 +34,7 @@ bootRun {
     addResources = true
 }
 
-//这个任务可以搞一个带依赖的jar包
+//fat jar
 bootRepackage {
     mainClass = mainClassName
 }
@@ -46,7 +46,7 @@ repositories {
     }
 }
 
-//解决乱码
+//luanma
 [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
 
 ext {
