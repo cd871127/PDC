@@ -39,8 +39,8 @@ bootRepackage {
     mainClass = mainClassName
 }
 
+//1
 repositories {
-    mavenCentral()
     maven {
         url "http://maven.aliyun.com/nexus/content/groups/public"
     }
