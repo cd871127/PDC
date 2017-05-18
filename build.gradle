@@ -9,6 +9,7 @@ apply plugin: 'idea'
 
 buildscript {
     repositories {
+        mavenCenter()
         maven {
             url "http://maven.aliyun.com/nexus/content/groups/public"
         }
@@ -39,6 +40,7 @@ bootRepackage {
 }
 
 repositories {
+    mavenCentral()
     maven {
         url "http://maven.aliyun.com/nexus/content/groups/public"
     }
