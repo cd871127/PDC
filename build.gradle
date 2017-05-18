@@ -39,7 +39,7 @@ bootRepackage {
     mainClass = mainClassName
 }
 
-//12
+//122
 repositories {
     maven {
         mavenCentral()
