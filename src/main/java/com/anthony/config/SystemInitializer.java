@@ -88,7 +88,7 @@ public class SystemInitializer {
             System.out.println("写入当前配置到配置文件中");
             FileWriter fileWriter = new FileWriter(file);
             for (Map.Entry<String, String> e : properties.entrySet()) {
-                fileWriter.write(e.getKey() + "=" + e.getValue());
+                fileWriter.write(e.getKey() + "=" + e.getValue()+"\n");
             }
             fileWriter.close();
             System.out.println("写入完成");
