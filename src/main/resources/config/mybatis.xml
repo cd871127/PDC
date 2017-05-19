@@ -8,8 +8,10 @@
     <!--</typeAliases>-->
     <typeAliases>
         <typeAlias type="com.anthony.user.dto.UserDTO" alias="userDTO"/>
+        <typeAlias type="com.anthony.torrent.dto.TorrentDTO" alias="torrentDTO"/>
     </typeAliases>
     <mappers>
         <mapper resource="mapper/user-mapper.xml"/>
+        <mapper resource="mapper/torrent-mapper.xml"/>
     </mappers>
 </configuration>

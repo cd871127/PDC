@@ -32,7 +32,7 @@ public class LoginController {
         if (null == userDTO) {
             return "登录失败";
         }
-        System.out.println("新用户登录:" + userDTO.getToken());
+        System.out.println("新用户登录12:" + userDTO.getToken());
         System.out.println(UserManager.getInstance().getUserMap().size());
         return userDTO;
     }

@@ -18,7 +18,7 @@ import java.util.HashMap;
 public class UserService {
 
     @Resource
-    UserDAO userDAO;
+    private UserDAO userDAO;
 
     public UserDTO userLogin(HashMap paraMap) {
         UserDTO userDTO = userDAO.getUserInfoByUserName(paraMap);
