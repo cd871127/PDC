@@ -5,10 +5,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * Created by CHENDONG239 on 2017-04-26.
@@ -40,12 +37,14 @@ public class SystemInitializer {
             System.out.println("读取成功，准备解析");
             Iterator it = properties.entrySet().iterator();
             HashMap<String, String> proMap = new HashMap<>();
-//转换properties到map
+            Set<String> methodNameSet = new HashSet<>();
+            //转换properties到map
             while (it.hasNext()) {
                 Map.Entry entry = (Map.Entry) it.next();
                 String methodName = entry.getKey().toString().substring(0, 1).toUpperCase() + entry.getKey().toString().substring(1);
                 methodName = "set" + methodName;
                 proMap.put(methodName, entry.getValue().toString());
+                methodNameSet.add(methodName);
             }
 
             //遍历参数类的方法 调用set方法
@@ -54,17 +53,15 @@ public class SystemInitializer {
             for (int i = 0; i != methods.length; ++i) {
                 Class<?> para[] = methods[i].getParameterTypes();
                 String methodName = methods[i].getName();
-                if ("wait".equals(methodName) || "equals".equals(methodName))
+                if ("wait".equals(methodName) || "equals".equals(methodName) || !methodNameSet.contains(methodName))
                     continue;
                 if (1 == para.length) {
                     Class<?> paraClass = para[0];
-
                     Constructor<?> constructor = paraClass.getConstructor(String.class);
                     Object[] parameter = new Object[1];
+                    System.out.println(proMap.get(methodName));
                     parameter[0] = constructor.newInstance(proMap.get(methodName));
                     methods[i].invoke(SystemConfigParameter.getInstance(), parameter);
-                } else {
-                    continue;
                 }
             }
 //
@@ -88,7 +85,7 @@ public class SystemInitializer {
             System.out.println("写入当前配置到配置文件中");
             FileWriter fileWriter = new FileWriter(file);
             for (Map.Entry<String, String> e : properties.entrySet()) {
-                fileWriter.write(e.getKey() + "=" + e.getValue()+"\n");
+                fileWriter.write(e.getKey() + "=" + e.getValue() + "\n");
             }
             fileWriter.close();
             System.out.println("写入完成");

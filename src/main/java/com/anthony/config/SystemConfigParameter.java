@@ -6,8 +6,8 @@ package com.anthony.config;
 public class SystemConfigParameter {
     private static SystemConfigParameter instance = new SystemConfigParameter();
     private Integer tokenExpireTime = 30;//用户登录验证的token过期时间,单位:分
-    private String calLiuBaseUrl="www.caoliu.com";  //草榴的基础地址
-    private String torrentBaseUrl="www.yahaha.com"; //种子的基础地址
+    private String caoLiuBaseUrl="http://t66y.com/";  //草榴的基础地址
+    private String torrentBaseUrl="http://www.rmdown.com/link.php"; //种子的基础地址
 
     private SystemConfigParameter() {
     }
@@ -20,8 +20,8 @@ public class SystemConfigParameter {
         return tokenExpireTime;
     }
 
-    public String getCalLiuBaseUrl() {
-        return calLiuBaseUrl;
+    public String getCaoLiuBaseUrl() {
+        return caoLiuBaseUrl;
     }
 
     public String getTorrentBaseUrl() {
@@ -33,8 +33,8 @@ public class SystemConfigParameter {
         return instance;
     }
 
-    public SystemConfigParameter setCalLiuBaseUrl(String calLiuBaseUrl) {
-        this.calLiuBaseUrl = calLiuBaseUrl;
+    public SystemConfigParameter setCaoLiuBaseUrl(String caoLiuBaseUrl) {
+        this.caoLiuBaseUrl = caoLiuBaseUrl;
         return instance;
     }
 
