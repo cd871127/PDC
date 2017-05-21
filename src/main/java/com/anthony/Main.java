@@ -52,7 +52,7 @@ public class Main {
             System.out.println(mainText);
             System.out.println(title);
             nextPage = content.substring(content.indexOf("var nextpage =") + "var nextpage =".length());
-            nextPage = nextPage.substring(0 + 2, nextPage.indexOf(".html"));
+            nextPage = nextPage.substring(2, nextPage.indexOf(".html"));
             System.out.println(nextPage);
             flag = scanner.nextLine();
         } while (!"quit".equals(flag));

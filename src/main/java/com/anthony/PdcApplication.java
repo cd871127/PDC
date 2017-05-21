@@ -19,3 +19,5 @@ public class PdcApplication {
 }
 //http://ourjs.com/detail/529ca5950cb6498814000005
 
+//npm config set registry https://registry.npmjs.org/
+
