@@ -20,7 +20,7 @@ buildscript {
     }
 }
 
-//// https://mvnrepository.com/artifact/org.springframework/springloaded
+//// https://mvnrepository.com/artifact/org.springframework/springloaded1
 //compile group: 'org.springframework', name: 'springloaded', version: '1.2.7.RELEASE'
 //    idea {
 //        module {
