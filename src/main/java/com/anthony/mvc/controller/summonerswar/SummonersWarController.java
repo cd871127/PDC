@@ -13,7 +13,7 @@ import java.util.Map;
 
 @RestController("/summoner")
 public class SummonersWarController {
-    @CrossOrigin(origins = "http://45.78.44.179:3000",methods = RequestMethod.POST)
+    @CrossOrigin(origins = "http://localhost:3000",methods = RequestMethod.POST)
     @RequestMapping(value = "fighttime",method = RequestMethod.POST)
     public int calculateFightTimes(@RequestBody MonsterFightTimeDTO monsterFightTimeDTO, HttpServletRequest request) {
 
@@ -23,7 +23,7 @@ public class SummonersWarController {
 //        monsterFightTimeDTO.setStar(3);
 //        monsterFightTimeDTO.setFightExp(2552);
         int res = FightNum.getFightNum(monsterFightTimeDTO);
-//        System.out.println(res);
+        System.out.println(3);
         return res;
     }
 }

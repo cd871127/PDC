@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anthony.torrent.dao.TorrentDAO">
+
+    <insert id="addTorrentInfo" parameterType="java.util.List">
+        INSERT INTO torrent_info_tbl(post_url, hash_code, title)
+        <foreach item="item" index="index" collection="list"
+                 separator="UNION ALL">
+            SELECT #{item.url},#{item.hashCode},#{item.title}
+        </foreach>
+    </insert>
+
+    <update id="updateTorrentInfo"  parameterType="torrentDTO">
+        UPDATE torrent_info_tbl SET
+        hash_code=#{hashCode},status=#{status},is_download=#{isDownload}
+        WHERE post_url=#{url}
+    </update>
+
+
+
+
+</mapper>
