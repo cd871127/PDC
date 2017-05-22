@@ -40,4 +40,14 @@ public class MonsterFightTimeDTO {
     public void setFightExp(int fightExp) {
         this.fightExp = fightExp;
     }
+
+    @Override
+    public String toString() {
+        return "MonsterFightTimeDTO{" +
+                "star=" + star +
+                ", curExp=" + curExp +
+                ", curLevel=" + curLevel +
+                ", fightExp=" + fightExp +
+                '}';
+    }
 }
