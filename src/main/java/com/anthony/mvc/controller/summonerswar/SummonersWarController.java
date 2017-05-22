@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Created by chend on 2017/4/16.
  */
-@CrossOrigin(origins = "*")
+@CrossOrigin
 @RestController("/summoner")
 public class SummonersWarController {
     @RequestMapping(value = "fighttime",method = RequestMethod.GET)
