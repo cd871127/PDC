@@ -3,6 +3,8 @@ package com.anthony.torrent.util.http;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.protocol.HttpClientContext;
+import org.apache.http.protocol.HttpContext;
 
 import java.io.*;
 
@@ -13,10 +15,10 @@ public class MultiThreadGET extends MultiThreadHttpRequest {
 
     private HttpGet httpGet;
 
-
     @Override
     public Object call() throws Exception {
-        CloseableHttpResponse response = getHttpClient().execute(httpGet, getContext());
+        HttpContext context= HttpClientContext.create();
+        CloseableHttpResponse response = getHttpClient().execute(httpGet, context);
         HttpEntity entity = response.getEntity();
         if (entity != null) {
             InputStream instream = entity.getContent();

@@ -1,6 +1,7 @@
 package com.anthony.torrent.util.http;
 
 import org.apache.http.HttpHost;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.conn.routing.HttpRoute;
@@ -17,7 +18,7 @@ import java.util.concurrent.Callable;
 public abstract class MultiThreadHttpRequest implements Callable {
 
     private final CloseableHttpClient httpClient;
-    private final HttpContext context;
+
 
     public MultiThreadHttpRequest() {
         PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager();
@@ -28,17 +29,15 @@ public abstract class MultiThreadHttpRequest implements Callable {
         // Increase max connections for localhost:80 to 50
         HttpHost localhost = new HttpHost("locahost", 80);
         cm.setMaxPerRoute(new HttpRoute(localhost), 50);
+        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000).build();
         this.httpClient = HttpClients.custom()
-                .setConnectionManager(cm)
+                .setConnectionManager(cm).setDefaultRequestConfig(requestConfig)
                 .build();
-        this.context=HttpClientContext.create();
+
     }
 
     public CloseableHttpClient getHttpClient() {
         return httpClient;
     }
 
-    public HttpContext getContext() {
-        return context;
-    }
 }

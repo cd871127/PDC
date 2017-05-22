@@ -22,6 +22,8 @@ public class TorrentService {
     @Autowired
     ParseBookMark parseBookMark;
 
+    //导入书签
+    //添加url到数据库
     public int importTorrentBookMark(InputStream in, String dirName) {
 //        ParseBookMark parseBookMark = new ParseBookMark(dirName);
         parseBookMark.setDirName(dirName);
