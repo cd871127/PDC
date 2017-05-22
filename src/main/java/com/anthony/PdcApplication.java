@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class PdcApplication {
     public static void main(String[] args) throws Exception {
         SystemInitializer.getInstance().init();
-        //通过SpringApplication的run()方法启动应用，无需额外的配置其他的文件1
+        //通过SpringApplication的run()方法启动应用，无需额外的配置其他的文件2
         SpringApplication.run(PdcApplication.class, args);
     }
 
