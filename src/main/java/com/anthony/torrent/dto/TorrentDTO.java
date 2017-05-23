@@ -1,5 +1,7 @@
 package com.anthony.torrent.dto;
 
+import org.apache.http.client.methods.HttpGet;
+
 /**
  * Created by Anthony on 2017/5/19.
  */
@@ -9,7 +11,6 @@ public class TorrentDTO {
     private String hashCode;
     private int status;
     private int isDownload;
-
 
     public String getUrl() {
         return url;
@@ -49,5 +50,17 @@ public class TorrentDTO {
 
     public void setIsDownload(int isDownload) {
         this.isDownload = isDownload;
+    }
+
+    @Override
+    public String toString() {
+//        return "TorrentDTO{" +
+//                "url='" + url + '\'' +
+//                ", title='" + title + '\'' +
+//                ", hashCode='" + hashCode + '\'' +
+//                ", status=" + status +
+//                ", isDownload=" + isDownload +
+//                '}';
+        return url;
     }
 }

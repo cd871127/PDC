@@ -5,7 +5,7 @@ CREATE TABLE torrent_info_tbl
   user_id      INTEGER REFERENCES user_info_tbl (user_id)
     ON UPDATE CASCADE
     ON DELETE SET NULL,
-  hash_code    VARCHAR(1024),
+  hash_code    VARCHAR(1024) DEFAULT '0',
   title        VARCHAR(1024)             NOT NULL,
   status       INTEGER DEFAULT 0 NOT NULL, --'0' 未下载 '1' 已下载 '2' 异常
   is_download  INTEGER DEFAULT 0 NOT NULL, --'0' 用户未下载 '1' 用户已下载

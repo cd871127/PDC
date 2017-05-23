@@ -1,14 +1,20 @@
 package com.anthony.torrent.util;
 
+import com.anthony.config.SystemConfigParameter;
+import com.anthony.torrent.util.http.PDCHttpClient;
 import com.anthony.torrent.util.parse.ParseBookMark;
 import com.anthony.torrent.util.parse.ParseFileUtil;
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.protocol.HttpClientContext;
+import org.apache.http.protocol.HttpContext;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
+import java.io.*;
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -34,7 +40,9 @@ public class ParseBookMarkTest {
     public void streamToList() throws Exception {
         ParseFileUtil p=new ParseBookMark("wuhaha");
         List a=p.streamToList(in);
-        System.out.println(a.size());
+        a.forEach(System.out::println);
+        URL url=new URL(SystemConfigParameter.getInstance().getCaoLiuBaseUrl()+a.get(0));
+        System.out.println(url.toString());
 //    String t="<DT><H3 FOLDED ADD_DATE=\"-372450185370\">vps</H3>";
 //
 //        System.out.println(t.indexOf("<DT>"));
@@ -42,5 +50,15 @@ public class ParseBookMarkTest {
 //        System.out.println(t.length()-"</H3>".length());
 
     }
+//    @Test
+//    public void test() throws Exception{
+////        HttpContext context= HttpClientContext.create();
+//        HttpGet httpGet=new HttpGet("http://www.google.com");
+//        System.out.println("start");
+//        CloseableHttpResponse response = PDCHttpClient.httpClient.execute(httpGet);
+//        System.out.println("done");
+//        System.out.println(response.getStatusLine().getStatusCode());
+//        response.close();
+//    }
 
 }
