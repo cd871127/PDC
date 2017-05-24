@@ -1,5 +1,6 @@
 package com.anthony.torrent.service;
 
+import com.anthony.config.SystemInitializer;
 import com.anthony.torrent.dao.TorrentDAO;
 import com.anthony.torrent.dto.TorrentDTO;
 import org.junit.After;
@@ -13,6 +14,9 @@ import javax.annotation.Resource;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Anthony on 2017/5/19.
@@ -32,6 +36,7 @@ public class TorrentServiceTest {
     public void setUp() throws Exception {
         File file = new File("C:\\Users\\Anthony\\Desktop\\Bookmark.html");
         in = new FileInputStream(file);
+        SystemInitializer.getInstance().init();
     }
 
     @After
@@ -42,6 +47,11 @@ public class TorrentServiceTest {
     @Test
     public void importTorrentBookMark() throws Exception {
         System.out.println(torrentService.importTorrentBookMark(in));
+//        Map m=new HashMap();
+//        m.put("status","0");
+//        List l=torrentService.queryTorrentDTODownloadList(m);
+//        System.out.println(l.size());
+//        l.forEach(System.out::println);
     }
 //    @Test
 //    public void importTorrentBookMark2() throws Exception {

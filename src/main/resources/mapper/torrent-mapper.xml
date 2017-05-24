@@ -18,6 +18,17 @@
         WHERE post_url=#{url}
     </update>
 
+    <select id="queryTorrentDTODownloadList" parameterType="java.util.HashMap" resultType="torrentDTO">
+        SELECT post_url url,hash_code hashCode,title title,status status,is_download isDownload FROM torrent_info_tbl
+        WHERE 1=1
+        <if test="status != null" >
+            AND status=#{status}
+        </if>
+        limit 0,
+        <if test="count != null" >
+            #{count}
+        </if>
+    </select>
 
 
 

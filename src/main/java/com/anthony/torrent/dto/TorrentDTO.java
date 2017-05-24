@@ -2,6 +2,8 @@ package com.anthony.torrent.dto;
 
 import org.apache.http.client.methods.HttpGet;
 
+import java.util.HashMap;
+
 /**
  * Created by Anthony on 2017/5/19.
  */
@@ -11,6 +13,7 @@ public class TorrentDTO {
     private String hashCode;
     private int status;
     private int isDownload;
+    private HashMap<String,String> param;
 
     public String getUrl() {
         return url;
@@ -52,15 +55,23 @@ public class TorrentDTO {
         this.isDownload = isDownload;
     }
 
+    public HashMap<String, String> getParam() {
+        return param;
+    }
+
+    public void setParam(HashMap<String, String> param) {
+        this.param = param;
+    }
+
     @Override
     public String toString() {
-//        return "TorrentDTO{" +
-//                "url='" + url + '\'' +
-//                ", title='" + title + '\'' +
-//                ", hashCode='" + hashCode + '\'' +
-//                ", status=" + status +
-//                ", isDownload=" + isDownload +
-//                '}';
-        return url;
+        return "TorrentDTO{" +
+                "url='" + url + '\'' +
+                ", title='" + title + '\'' +
+                ", hashCode='" + hashCode + '\'' +
+                ", status=" + status +
+                ", isDownload=" + isDownload +
+                '}';
+//        return url;
     }
 }

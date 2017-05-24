@@ -1,5 +1,6 @@
 package com.anthony.torrent.util.http;
 
+import com.anthony.config.SystemConfigParameter;
 import com.anthony.torrent.dto.TorrentDTO;
 import org.springframework.stereotype.Component;
 
@@ -11,10 +12,19 @@ import java.util.concurrent.ArrayBlockingQueue;
  */
 @Component
 public class TorrentInfoQueue {
-    private ArrayBlockingQueue<TorrentDTO> abQueue;
+
+    private ArrayBlockingQueue<TorrentDTO> queue = new ArrayBlockingQueue<>(SystemConfigParameter.getInstance().getDownloadListSize());
 
     public TorrentDTO take() throws InterruptedException {
-        return abQueue.take();
+        return queue.take();
+    }
+
+    public void put(TorrentDTO torrentDTO) throws InterruptedException {
+        queue.put(torrentDTO);
+    }
+
+    public boolean isEmpty() {
+        return queue.isEmpty();
     }
 
 }
