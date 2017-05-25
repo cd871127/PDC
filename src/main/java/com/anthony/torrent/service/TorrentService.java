@@ -32,10 +32,10 @@ public class TorrentService {
     private ParseBookMark parseBookMark;
 
     @Resource
-    DownloadTask downloadTask;
+    private DownloadTask downloadTask;
 
     @Resource
-    TorrentInfoQueue downloadQueue;
+    private TorrentInfoQueue downloadQueue;
 
     public void downloadTorrent() {
         final int threadCount = SystemConfigParameter.getInstance().getDownloadThreadCount();
