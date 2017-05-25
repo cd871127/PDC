@@ -53,8 +53,8 @@ public class ParseBookMark implements ParseFileUtil {
                 if (tmp.contains(endFlag))
                     break;
                 if (tmp.contains(dataFlag)) {
-                    String url = getMiddleStr(tmp, "htm_data", "\" ADD_DATE");
-                    String title = getMiddleStr(tmp, "\">", "</A>");
+                    String url = ParseUtil.getMiddleStr(tmp, "htm_data", "\" ADD_DATE");
+                    String title = ParseUtil.getMiddleStr(tmp, "\">", "</A>");
                     if (null == url || null == title) {
                         //TODO log error
 
@@ -76,13 +76,7 @@ public class ParseBookMark implements ParseFileUtil {
         return postInfoList;
     }
 
-    private String getMiddleStr(String str, String startStr, String endStr) {
-        int index1 = str.indexOf(startStr);
-        int index2 = str.indexOf(endStr);
-        if (-1 == index1 || -1 == index2)
-            return null;
-        return str.substring(index1 + startStr.length(), index2);
-    }
+
 
     public String getDirName() {
         return dirName;

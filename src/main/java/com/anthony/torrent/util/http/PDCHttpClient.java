@@ -23,7 +23,7 @@ public class PDCHttpClient {
         // Increase max connections for localhost:80 to 50
         HttpHost localhost = new HttpHost("locahost", 80);
         cm.setMaxPerRoute(new HttpRoute(localhost), 50);
-        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000).build();
+        RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(10000).setConnectTimeout(5000).build();
         httpClient = HttpClients.custom()
                 .setConnectionManager(cm)
                 .setDefaultRequestConfig(requestConfig)

@@ -27,4 +27,9 @@ public class TorrentInfoQueue {
         return queue.isEmpty();
     }
 
+    public int size()
+    {
+        return queue.size();
+    }
+
 }

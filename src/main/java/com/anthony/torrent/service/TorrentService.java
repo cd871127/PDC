@@ -6,17 +6,15 @@ import com.anthony.torrent.dto.TorrentDTO;
 import com.anthony.torrent.util.http.DownloadTask;
 import com.anthony.torrent.util.http.TorrentInfoQueue;
 import com.anthony.torrent.util.parse.ParseBookMark;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.UncategorizedSQLException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.InputStream;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -39,16 +37,35 @@ public class TorrentService {
     @Resource
     TorrentInfoQueue downloadQueue;
 
-    public void downloadTorrent()
-    {
-        final int threadCount=SystemConfigParameter.getInstance().getDownloadThreadCount();
+    public void downloadTorrent() {
+        final int threadCount = SystemConfigParameter.getInstance().getDownloadThreadCount();
         ExecutorService executor = Executors.newFixedThreadPool(threadCount);
-        LinkedList<Future<TorrentDTO>> futures=new LinkedList<>();
+        LinkedList<Future<TorrentDTO>> futures = new LinkedList<>();
 
 
-        while(!downloadQueue.isEmpty()) {
+//        while (!downloadQueue.isEmpty()) {
+            System.out.println(Thread.currentThread().getName()+": submit");
             futures.add(executor.submit(downloadTask));
+//        }
+
+        while (!futures.isEmpty()) {
+            for (int i = 0; i != futures.size(); ++i) {
+                Future<TorrentDTO> future = futures.get(i);
+                if (future.isDone()) {
+                    try {
+                        TorrentDTO torrentDTO = future.get();
+                        System.out.println(torrentDTO);
+                        updateTorrentInfo(torrentDTO);
+                        futures.remove(i);
+                        break;
+                    } catch (InterruptedException | ExecutionException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
         }
+
+        executor.shutdown();
 
     }
 
@@ -56,10 +73,18 @@ public class TorrentService {
         return torrentDAO.updateTorrentInfo(torrentDTO);
     }
 
-    public List<TorrentDTO> queryTorrentDTODownloadList(Map<String,String> param)
-    {
+    public void queryTorrentDTODownloadList(Map<String, String> param) {
         param.put("count", SystemConfigParameter.getInstance().getDownloadListSize().toString());
-        return torrentDAO.queryTorrentDTODownloadList(param);
+        param.putIfAbsent("status", "0");
+        List<TorrentDTO> list = torrentDAO.queryTorrentDTODownloadList(param);
+
+        for (TorrentDTO torrentDTO : list) {
+            try {
+                downloadQueue.put(torrentDTO);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     //导入书签
