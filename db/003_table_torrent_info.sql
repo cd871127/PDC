@@ -14,7 +14,6 @@ CREATE TABLE torrent_info_tbl
 );
 
 
-
 CREATE TRIGGER torrent_info_ai_trg
   AFTER
   UPDATE
@@ -35,11 +34,11 @@ COMMIT;
 
 DELETE FROM torrent_info_tbl;
 
-INSERT INTO torrent_info_tbl (post_url,user_id, hash_code, title) SELECT
-                                                            'test',
-  55,
-                                                            '2',
-                                                            '3'
+INSERT INTO torrent_info_tbl (post_url, user_id, hash_code, title) SELECT
+                                                                     'test',
+                                                                     55,
+                                                                     '2',
+                                                                     '3'
 
 INSERT INTO torrent_info_tbl (post_url, hash_code, title) SELECT
                                                             'test',

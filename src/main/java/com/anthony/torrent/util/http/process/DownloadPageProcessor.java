@@ -38,7 +38,7 @@ public class DownloadPageProcessor implements HttpEntityProcessor<Map<String, St
         } catch (IOException e) {
             e.printStackTrace();
             torrentDTO.setStatus(-1);
-            map=null;
+            map = null;
         } finally {
             try {
                 if (in != null) {

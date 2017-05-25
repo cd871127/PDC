@@ -1,19 +1,15 @@
 package com.anthony.torrent.util;
 
 import com.anthony.config.SystemConfigParameter;
-import com.anthony.torrent.util.http.PDCHttpClient;
 import com.anthony.torrent.util.parse.ParseBookMark;
 import com.anthony.torrent.util.parse.ParseFileUtil;
-import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.protocol.HttpClientContext;
-import org.apache.http.protocol.HttpContext;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 
@@ -25,7 +21,7 @@ public class ParseBookMarkTest {
 
     @Before
     public void setUp() throws Exception {
-        File file= new File("C:\\Users\\Anthony\\Desktop\\Bookmark.html");
+        File file = new File("C:\\Users\\Anthony\\Desktop\\Bookmark.html");
 
         in = new FileInputStream(file);
 
@@ -38,10 +34,10 @@ public class ParseBookMarkTest {
 
     @Test
     public void streamToList() throws Exception {
-        ParseFileUtil p=new ParseBookMark("wuhaha");
-        List a=p.streamToList(in);
+        ParseFileUtil p = new ParseBookMark("wuhaha");
+        List a = p.streamToList(in);
         a.forEach(System.out::println);
-        URL url=new URL(SystemConfigParameter.getInstance().getCaoLiuBaseUrl()+a.get(0));
+        URL url = new URL(SystemConfigParameter.getInstance().getCaoLiuBaseUrl() + a.get(0));
         System.out.println(url.toString());
 //    String t="<DT><H3 FOLDED ADD_DATE=\"-372450185370\">vps</H3>";
 //

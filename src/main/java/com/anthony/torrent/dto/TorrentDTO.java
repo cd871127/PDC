@@ -1,7 +1,5 @@
 package com.anthony.torrent.dto;
 
-import org.apache.http.client.methods.HttpGet;
-
 import java.util.HashMap;
 
 /**
@@ -13,7 +11,7 @@ public class TorrentDTO {
     private String hashCode;
     private int status;
     private int isDownload;
-    private HashMap<String,String> param;
+    private HashMap<String, String> param;
 
     public String getUrl() {
         return url;

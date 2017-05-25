@@ -57,15 +57,15 @@
 
 <script type="text/javascript">
     function signIn() {
-        let localStorage=window.sessionStorage;
-        let token=localStorage['token'];
+        let localStorage = window.sessionStorage;
+        let token = localStorage['token'];
 
         let settings = {
             type: "GET",
             url: "login/cd/123",
             async: true,
-            success: function (data,textStatus,jqXHR) {
-                if(jqXHR.status=='200'||jqXHR.status=='400')
+            success: function (data, textStatus, jqXHR) {
+                if (jqXHR.status == '200' || jqXHR.status == '400')
                     alert(1);
                 else
                     alert(0);
@@ -73,8 +73,8 @@
                 console.log(textStatus);
                 console.log(jqXHR);
                 alert(1);
-                if(typeof data.token!='undefined')
-                    localStorage['token']=data.token;
+                if (typeof data.token != 'undefined')
+                    localStorage['token'] = data.token;
             },
 //            error: function (xhr){
 //                debugger

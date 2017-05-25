@@ -12,7 +12,7 @@
         </foreach>
     </insert>
 
-    <update id="updateTorrentInfo"  parameterType="torrentDTO">
+    <update id="updateTorrentInfo" parameterType="torrentDTO">
         UPDATE torrent_info_tbl SET
         hash_code=#{hashCode},status=#{status},is_download=#{isDownload}
         WHERE post_url=#{url}
@@ -21,15 +21,14 @@
     <select id="queryTorrentDTODownloadList" parameterType="java.util.HashMap" resultType="torrentDTO">
         SELECT post_url url,hash_code hashCode,title title,status status,is_download isDownload FROM torrent_info_tbl
         WHERE 1=1
-        <if test="status != null" >
+        <if test="status != null">
             AND status=#{status}
         </if>
         limit 0,
-        <if test="count != null" >
+        <if test="count != null">
             #{count}
         </if>
     </select>
-
 
 
 </mapper>

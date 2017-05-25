@@ -41,13 +41,10 @@ public class TorrentService {
         final int threadCount = SystemConfigParameter.getInstance().getDownloadThreadCount();
         ExecutorService executor = Executors.newFixedThreadPool(threadCount);
         LinkedList<Future<TorrentDTO>> futures = new LinkedList<>();
-
-
 //        while (!downloadQueue.isEmpty()) {
-            System.out.println(Thread.currentThread().getName()+": submit");
-            futures.add(executor.submit(downloadTask));
+        System.out.println(Thread.currentThread().getName() + ": submit");
+        futures.add(executor.submit(downloadTask));
 //        }
-
         while (!futures.isEmpty()) {
             for (int i = 0; i != futures.size(); ++i) {
                 Future<TorrentDTO> future = futures.get(i);
@@ -64,9 +61,7 @@ public class TorrentService {
                 }
             }
         }
-
         executor.shutdown();
-
     }
 
     public int updateTorrentInfo(TorrentDTO torrentDTO) {
@@ -113,7 +108,6 @@ public class TorrentService {
                 break;
             }
             startIndex += delta;
-
         }
         return successCount;
     }

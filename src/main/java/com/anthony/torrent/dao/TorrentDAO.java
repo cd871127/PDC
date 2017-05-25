@@ -17,8 +17,7 @@ public interface TorrentDAO {
 
     int updateTorrentInfo(TorrentDTO torrentDTO);
 
-    List<TorrentDTO> queryTorrentDTODownloadList(Map<String,String> param);
-
+    List<TorrentDTO> queryTorrentDTODownloadList(Map<String, String> param);
 
 
 }

@@ -77,7 +77,6 @@ public class ParseBookMark implements ParseFileUtil {
     }
 
 
-
     public String getDirName() {
         return dirName;
     }

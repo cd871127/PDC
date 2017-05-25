@@ -30,7 +30,7 @@ public class DownloadTask implements Callable<TorrentDTO> {
     public TorrentDTO call() throws Exception {
         System.out.println("take");
         TorrentDTO torrentDTO = downloadQueue.take();
-        while (torrentDTO.getStatus() < 2 && torrentDTO.getStatus()!=-1) {
+        while (torrentDTO.getStatus() < 2 && torrentDTO.getStatus() != -1) {
             System.out.println(Thread.currentThread().getName() + ": send request");
             torrentDTO = sendRequest(torrentDTO);
         }

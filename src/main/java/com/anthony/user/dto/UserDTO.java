@@ -16,6 +16,7 @@ public class UserDTO implements Serializable {
     private Date activeTime;
     private int timeOut;
     private String token;
+
     UserDTO() {
         setActiveTime(new Date());
         setTimeOut(SystemConfigParameter.getInstance().getTokenExpireTime());
