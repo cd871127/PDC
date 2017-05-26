@@ -30,7 +30,7 @@ public class DownloadTask implements Callable<TorrentDTO> {
     public TorrentDTO call() throws Exception {
         System.out.println("take");
         TorrentDTO torrentDTO = downloadQueue.take();
-        while (torrentDTO.getStatus() < 2 && torrentDTO.getStatus() != -1) {
+        while (torrentDTO.getStatus() < 3 && torrentDTO.getStatus() != -1) {
             System.out.println(Thread.currentThread().getName() + ": send request");
             torrentDTO = sendRequest(torrentDTO);
         }
@@ -47,12 +47,7 @@ public class DownloadTask implements Callable<TorrentDTO> {
             return torrentDTO;
         }
         HttpGet httpGet = (HttpGet) map.get("httpget");
-        httpGet.setHeader("Proxy-Connection", "keep-alive");
-        httpGet.setHeader("Upgrade-Insecure-Requests", "1");
-        httpGet.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36");
-        httpGet.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
-        httpGet.setHeader("Accept-Encoding", "gzip, deflate, sdch");
-        httpGet.setHeader("Accept-Language", "zh-CN,zh;q=0.8");
+
         HttpEntityProcessor processor = (HttpEntityProcessor) map.get("processor");
         try {
             System.out.println(httpGet.getURI().toString());
@@ -103,6 +98,15 @@ public class DownloadTask implements Callable<TorrentDTO> {
         if (null != assembledParam)
             url += assembledParam;
         HttpGet httpGet = new HttpGet(url);
+        if (2!=torrentDTO.getStatus()) {
+            httpGet.setHeader("Proxy-Connection", "keep-alive");
+            httpGet.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
+            httpGet.setHeader("Accept-Encoding", "gzip, deflate, sdch");
+            httpGet.setHeader("Accept-Language", "zh-CN,zh;q=0.8");
+        }
+        httpGet.setHeader("Upgrade-Insecure-Requests", "1");
+        httpGet.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36");
+
         resMap.put("processor", httpEntityProcessor);
         resMap.put("httpget", httpGet);
 

@@ -32,6 +32,7 @@ public class DownloadPageProcessor implements HttpEntityProcessor<Map<String, St
                 tmp = tmp.substring(0, tmp.indexOf("\">"));
                 map.put("ref", torrentDTO.getHashCode());
                 map.put("reff", tmp);
+                map.put("submit","download");
                 torrentDTO.setStatus(torrentDTO.getStatus() + 1);
                 torrentDTO.setParam(map);
             }

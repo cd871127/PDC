@@ -22,7 +22,7 @@ public class PostPageProcessor implements HttpEntityProcessor<String> {
             in = entity.getContent();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
             String tmp = "";
-            String prefix = "http://www.rmdown.com/link.php?hash=";
+            String prefix = "rmdown.com/link.php?hash=";
             while ((tmp = bufferedReader.readLine()) != null) {
                 if (!tmp.contains(prefix))
                     continue;
@@ -45,9 +45,10 @@ public class PostPageProcessor implements HttpEntityProcessor<String> {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+                torrentDTO.setStatus(-1);
             }
         }
-
+        System.out.println(hashCode);
         return hashCode;
     }
 }
