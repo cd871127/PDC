@@ -42,7 +42,7 @@ bootRepackage {
 //12212112
 repositories {
     maven {
-        mavenCentral()
+//        mavenCentral()
         url "http://maven.aliyun.com/nexus/content/groups/public"
     }
 }
