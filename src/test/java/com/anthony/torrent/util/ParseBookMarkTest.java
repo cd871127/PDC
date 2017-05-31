@@ -21,18 +21,18 @@ public class ParseBookMarkTest {
 
     @Before
     public void setUp() throws Exception {
-        File file = new File("C:\\Users\\Anthony\\Desktop\\Bookmark.html");
-
-        in = new FileInputStream(file);
+//        File file = new File("C:\\Users\\Anthony\\Desktop\\Bookmark.html");
+//
+//        in = new FileInputStream(file);
 
     }
 
     @After
     public void tearDown() throws Exception {
-        in.close();
+//        in.close();
     }
 
-    @Test
+//    @Test
     public void streamToList() throws Exception {
         ParseFileUtil p = new ParseBookMark("wuhaha");
         List a = p.streamToList(in);

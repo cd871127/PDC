@@ -24,16 +24,20 @@ public class PostPageProcessor implements HttpEntityProcessor<String> {
             String tmp = "";
             String prefix = "rmdown.com/link.php?hash=";
             while ((tmp = bufferedReader.readLine()) != null) {
-                if (!tmp.contains(prefix))
-                    continue;
-                int index1 = tmp.indexOf(prefix);
-                tmp = tmp.substring(index1 + prefix.length());
-                hashCode = tmp.substring(0, "17191ae3bf0995c143e25a79ebe3fc0c698278c45cb".length());
-                HashMap<String, String> map = new HashMap<>();
-                map.put("hash", hashCode);
-                torrentDTO.setParam(map);
-                torrentDTO.setHashCode(hashCode);
-                torrentDTO.setStatus(torrentDTO.getStatus() + 1);
+                if (tmp.contains(prefix)) {
+                    int index1 = tmp.indexOf(prefix);
+                    tmp = tmp.substring(index1 + prefix.length());
+                    hashCode = tmp.substring(0, "17191ae3bf0995c143e25a79ebe3fc0c698278c45cb".length());
+                    HashMap<String, String> map = new HashMap<>();
+                    map.put("hash", hashCode);
+                    torrentDTO.setParam(map);
+                    torrentDTO.setHashCode(hashCode);
+                    torrentDTO.setStatus(torrentDTO.getStatus() + 1);
+                    break;
+                }
+            }
+            if (null == hashCode) {
+                torrentDTO.setStatus(-1);
             }
         } catch (IOException e) {
             e.printStackTrace();

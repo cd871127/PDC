@@ -34,13 +34,13 @@ public class TorrentServiceTest {
 
     @Before
     public void setUp() throws Exception {
-        File file = new File("C:\\Users\\Anthony\\Desktop\\Bookmark.html");
-        in = new FileInputStream(file);
+//        File file = new File("C:\\Users\\Anthony\\Desktop\\Bookmark.html");
+//        in = new FileInputStream(file);
     }
 
     @After
     public void tearDown() throws Exception {
-        in.close();
+//        in.close();
     }
 
     @Test
