@@ -57,7 +57,6 @@ public class ParseBookMark implements ParseFileUtil {
                     String title = ParseUtil.getMiddleStr(tmp, "\">", "</A>");
                     if (null == url || null == title) {
                         //TODO log error
-
                         continue;
                     }
                     url = "htm_data" + url;
