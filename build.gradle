@@ -91,6 +91,6 @@ mainClassName = 'com.anthony.PdcApplication'
 
 jar.manifest.attributes.'Main-Class' = mainClassName
 
-processResources.
+
 
 
