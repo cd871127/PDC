@@ -32,12 +32,7 @@ public class PDCHttpClient {
         httpClient = HttpClients.custom()
                 .setConnectionManager(cm)
                 .setDefaultRequestConfig(requestConfig)
-                .setRetryHandler((exception, executionCount, context) -> {
-                    if (executionCount > 3) {
-                        return false;
-                    }
-                    return true;
-                })
+                .setRetryHandler((exception, executionCount, context) -> executionCount <= 3)
                 .build();
     }
 
