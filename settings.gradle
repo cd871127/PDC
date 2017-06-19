@@ -1,2 +1,2 @@
 rootProject.name = 'PDC'
-
+includeFlat("BrowserMocker")
