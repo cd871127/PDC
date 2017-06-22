@@ -18,8 +18,7 @@ public class PDCHttpClientTest {
 
     @Test
     public void test() throws Exception {
-//        HttpGet
-//        PDCHttpClient.httpClient.execute();
+
     }
 
 }
