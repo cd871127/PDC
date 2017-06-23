@@ -17,48 +17,11 @@ public class PostProcessorTest {
             "htm_data/15/1612/2187672.html",
             "htm_data/15/1612/2187673.html",
             "htm_data/15/1612/2187677.html",
-            "htm_data/15/1612/2187678.html",
-            "htm_data/15/1612/2187689.html",
-            "htm_data/15/1612/2187691.html",
-            "htm_data/15/1612/2187694.html",
-            "htm_data/15/1612/2187695.html",
-            "htm_data/15/1612/2187698.html",
-            "htm_data/15/1612/2187702.html",
-            "htm_data/15/1612/2187727.html",
-            "htm_data/15/1612/2187730.html",
-            "htm_data/15/1612/2187733.html",
-            "htm_data/15/1612/2187742.html",
-            "htm_data/15/1612/2187748.html",
-            "htm_data/15/1612/2187764.html",
-            "htm_data/15/1612/2187774.html",
-            "htm_data/15/1612/2187780.html",
-            "htm_data/15/1612/2187802.html",
-            "htm_data/15/1612/2187814.html",
-            "htm_data/15/1612/2187822.html",
-            "htm_data/15/1612/2187824.html",
-            "htm_data/15/1612/2187825.html",
-            "htm_data/15/1612/2187829.html",
-            "htm_data/15/1612/2187892.html",
-            "htm_data/15/1612/2187904.html",
-            "htm_data/15/1612/2190246.html",
-            "htm_data/15/1612/2190250.html",
-            "htm_data/15/1612/2190263.html",
-            "htm_data/15/1612/2190280.html",
-            "htm_data/15/1612/2190286.html",
-            "htm_data/15/1612/2190288.html",
-            "htm_data/15/1612/2190291.html",
-            "htm_data/15/1612/2190293.html",
-            "htm_data/15/1612/2190295.html",
-            "htm_data/15/1612/2190297.html",
-            "htm_data/15/1612/2190299.html",
-            "htm_data/15/1612/2190325.html",
-            "htm_data/15/1612/2190339.html",
-            "htm_data/15/1612/2190342.html",
     };
     @Test
     public void testProcessor() throws MalformedURLException {
         MultiThreadBrowserMocker<String> m = (MultiThreadBrowserMocker<String>) MultiThreadBrowserMocker.<String>builder().setThreadCount(6)
-//                .setProxy("127.0.0.1",1080,"http")
+                .setProxy("127.0.0.1",1080,"http")
                 .setProcessor(new PostProcessor()).build();
         Map<String, URL> urlMap = new HashMap<>();
         String baseStr = "http://t66y.com/";
@@ -85,8 +48,18 @@ public class PostProcessorTest {
 
         Map<String,String> param=new HashMap<>();
         param.put("hash","163a394ed74eb4d6da918342da79aa2925592c0b5d5");
-        String res=m.post(new URL("http://www.rmdown.com/link.php"),param);
+
+        String res=m.get(new URL("http://www.rmdown.com/link.php"),param);
 //        String res=m.get(new URL("http://www.rmdown.com/link.php?hash=163a394ed74eb4d6da918342da79aa2925592c0b5d5"));
         System.out.println(res);
     }
 }
+//
+//       if (2!=torrentDTO.getStatus()) {
+//               httpGet.setHeader("Proxy-Connection", "keep-alive");
+//               httpGet.setHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
+//               httpGet.setHeader("Accept-Encoding", "gzip, deflate, sdch");
+//               httpGet.setHeader("Accept-Language", "zh-CN,zh;q=0.8");
+//               }
+//               httpGet.setHeader("Upgrade-Insecure-Requests", "1");
+//               httpGet.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36");
