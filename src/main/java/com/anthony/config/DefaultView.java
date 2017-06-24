@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class DefaultView extends WebMvcConfigurerAdapter {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("forward:/html/index.html");
+//        registry.addViewController("/").setViewName("forward:/html/index.html");
 //        registry.addViewController("/testReact").setViewName("forward:/html/test.html");
 //        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
         super.addViewControllers(registry);

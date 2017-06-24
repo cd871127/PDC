@@ -16,7 +16,7 @@ public class SystemInitializer {
     private final String propertiesFileName = "pdc.properties";
 
     private SystemInitializer() {
-        loadParameter();
+//        loadParameter();
     }
 
     public static SystemInitializer getInstance() {

@@ -6,10 +6,10 @@ package com.anthony.config;
 public class SystemConfigParameter {
     private static SystemConfigParameter instance = new SystemConfigParameter();
     private Integer tokenExpireTime = 30;//用户登录验证的token过期时间,单位:分
-    private String caoLiuBaseUrl = "http://cl.wedid.us/";  //草榴的基础地址
+    private String caoLiuBaseUrl = "http://t66y.com/";  //草榴的基础地址
     private String torrentBaseUrl = "http://www.rmdown.com/"; //种子的基础地址
     private Integer downloadListSize = 3; //下载队列大小
-    private Integer downloadThreadCount = 2;
+    private Integer downloadThreadCount = 3;
 
     private SystemConfigParameter() {
     }

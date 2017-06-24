@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController("/summoner")
 public class SummonersWarController {
-    @CrossOrigin(origins = "http://localhost:3000", methods = RequestMethod.POST)
-    @RequestMapping(value = "fighttime", method = RequestMethod.POST)
+    @CrossOrigin(origins = "http://localhost:3000", methods = RequestMethod.GET)
+    @RequestMapping(value = "fighttime", method = RequestMethod.GET)
     public int calculateFightTimes(@RequestBody MonsterFightTimeDTO monsterFightTimeDTO, HttpServletRequest request) {
 
 //        monsterFightTimeDTO=new MonsterFightTimeDTO();
@@ -21,6 +21,7 @@ public class SummonersWarController {
 //        monsterFightTimeDTO.setCurLevel(1);
 //        monsterFightTimeDTO.setStar(3);
 //        monsterFightTimeDTO.setFightExp(2552);
+        System.out.println(1);
         int res = FightNum.getFightNum(monsterFightTimeDTO);
         System.out.println(3);
         return res;

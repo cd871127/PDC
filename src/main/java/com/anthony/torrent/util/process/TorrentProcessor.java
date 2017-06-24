@@ -3,12 +3,10 @@ package com.anthony.torrent.util.process;
 import com.anthony.browsermocker.processor.AbstractResponseProcessor;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -18,19 +16,25 @@ public class TorrentProcessor extends AbstractResponseProcessor<String> {
 
     @Override
     public String process(CloseableHttpResponse response, Map param) {
+        if(200!=response.getStatusLine().getStatusCode())
+            return null;
         HttpEntity entity = response.getEntity();
         Map<String, String> paraMap = requestParam(param);
+        String downloadDir = "torrent";
         if (null == paraMap || null == paraMap.get("ref"))
             return null;
-        File file = new File("torrent\\"+paraMap.get("ref")+".torrent");
+        File file = new File(downloadDir + "\\" + paraMap.get("ref") + ".torrent");
         FileOutputStream fos = null;
         try {
-            File dir=new File("torrent");
-            if(!dir.exists()) {
-                dir.mkdir();
-            }
+            boolean flag = true;
+            File dir = new File(downloadDir);
 
-            boolean flag;
+            if (!dir.exists()) {
+                flag = dir.mkdir();
+            }
+            if (!flag)
+                return null;
+
             if (file.exists())
                 return null;
             else

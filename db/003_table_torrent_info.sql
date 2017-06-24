@@ -38,7 +38,7 @@ INSERT INTO torrent_info_tbl (post_url, user_id, hash_code, title) SELECT
                                                                      'test',
                                                                      55,
                                                                      '2',
-                                                                     '3'
+                                                                     '3';
 
 INSERT INTO torrent_info_tbl (post_url, hash_code, title) SELECT
                                                             'test',

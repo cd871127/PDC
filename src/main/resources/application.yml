@@ -6,7 +6,18 @@ server:
 spring:
   http:
     encoding:
+      force: true
       charset: utf-8 #http请求的字符编码
+      enabled: true
+      force-request: true
+      force-response: true
+    multipart:
+      enabled: true
+      resolve-lazily: true
+      max-file-size: 128MB
+      max-request-size: 128MB
+
+
   datasource:
     driver-class-name: org.sqlite.JDBC
     url: jdbc:sqlite:pdc.db
@@ -15,6 +26,7 @@ spring:
 
 mybatis:
   config-location: classpath:config/mybatis.xml
+
 
 #<property name="driverClassName" value="org.sqlite.JDBC"/>
 #<property name="url" value="jdbc:sqlite:hello.db"/>

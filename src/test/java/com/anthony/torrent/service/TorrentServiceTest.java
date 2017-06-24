@@ -59,17 +59,6 @@ public class TorrentServiceTest {
 //        System.out.println(l.size());
 //        l.forEach(System.out::println);
     }
-//    @Test
-//    public void importTorrentBookMark2() throws Exception {
-//
-//        TorrentDTO torrentDTO=new TorrentDTO();
-//        torrentDTO.setHashCode("hhhh");
-//        torrentDTO.setIsDownload(1);
-//        torrentDTO.setStatus(1);
-//        torrentDTO.setTitle("22222");
-//        torrentDTO.setUrl("test");
-//
-//        torrentDAO.updateTorrentInfo(torrentDTO);
-//    }
+
 
 }

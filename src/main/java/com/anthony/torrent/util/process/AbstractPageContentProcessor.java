@@ -18,6 +18,8 @@ public abstract class AbstractPageContentProcessor extends AbstractResponseProce
 
     @Override
     public String process(CloseableHttpResponse response,Map param) {
+        if(200!=response.getStatusLine().getStatusCode())
+            return null;
         InputStream in = null;
         HttpEntity entity = response.getEntity();
         String res = null;
