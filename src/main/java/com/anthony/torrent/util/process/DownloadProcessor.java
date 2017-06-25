@@ -3,7 +3,9 @@ package com.anthony.torrent.util.process;
 import com.anthony.browsermocker.mocker.SimpleBrowserMocker;
 import com.anthony.config.SystemConfigParameter;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -13,7 +15,11 @@ import java.util.Map;
 /**
  * Created by chend on 2017/6/22.
  */
+@Component
 public class DownloadProcessor extends AbstractPageContentProcessor {
+
+    @Resource
+    private TorrentProcessor torrentProcessor;
 
     @Override
     public String process(CloseableHttpResponse response, Map param) {
@@ -36,7 +42,9 @@ public class DownloadProcessor extends AbstractPageContentProcessor {
         SimpleBrowserMocker<String> simpleBrowserMocker = (SimpleBrowserMocker<String>) SimpleBrowserMocker.<String>builder()
                 .setProxy("127.0.0.1", 1080, "http")
 //                .setHeaders(headers)
-                .setProcessor(new TorrentProcessor()).build();
+                .setRetryCount(3)
+                .setSocketTimeout(15000)
+                .setProcessor(torrentProcessor).build();
         URL url = null;
         String baseUrl = SystemConfigParameter.getInstance().getTorrentBaseUrl() + "download.php";
         try {

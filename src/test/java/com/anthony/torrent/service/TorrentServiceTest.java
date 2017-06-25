@@ -14,8 +14,7 @@ import javax.annotation.Resource;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Anthony on 2017/5/19.
@@ -60,5 +59,20 @@ public class TorrentServiceTest {
 //        l.forEach(System.out::println);
     }
 
+    @Test
+    public void test3()
+    {
+        Set<String> s=new HashSet<>();
+        s.add("htm_data/15/1706/2472214.html");
+        s.add("htm_data/15/1706/2470763.html");
+        s.add("htm_data/2/1706/2466395.html");
+        s.add("htm_data/15/1706/2466739.html");
+        s.add("htm_data/15/1706/2466031.html");
+        Map<String,Object> errorMap=new HashMap<>();
+        errorMap.put("status","2");
+        errorMap.put("urls",s);
+        //log error url
+        torrentDAO.updateTorrentInfoStatus(errorMap);
+    }
 
 }

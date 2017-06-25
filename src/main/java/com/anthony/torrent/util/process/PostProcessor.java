@@ -1,11 +1,14 @@
 package com.anthony.torrent.util.process;
 
+import org.springframework.stereotype.Component;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 
 /**
  * Created by chend on 2017/6/22.
  */
+@Component
 public class PostProcessor extends AbstractPageContentProcessor {
 
 

@@ -3,10 +3,7 @@ package com.anthony.torrent.util.parse;
 import com.anthony.torrent.dto.TorrentDTO;
 import org.springframework.stereotype.Component;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +25,12 @@ public class ParseBookMark implements ParseFileUtil {
 
     @Override
     public List<TorrentDTO> streamToList(InputStream in) {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
+        BufferedReader bufferedReader = null;
+        try {
+            bufferedReader = new BufferedReader(new InputStreamReader(in,"UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         if (dirName.equals(""))
             //TODO not handle error
             return null;

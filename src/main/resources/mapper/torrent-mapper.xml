@@ -14,8 +14,24 @@
 
     <update id="updateTorrentInfo" parameterType="torrentDTO">
         UPDATE torrent_info_tbl SET
-        hash_code=#{hashCode},status=#{status},is_download=#{isDownload}
+        <if test="hashCode!=null">
+            hash_code=#{hashCode}
+        </if>
+        <if test="status!=null">
+            ,status=#{status}
+        </if>
         WHERE post_url=#{url}
+    </update>
+
+    <update id="updateTorrentInfoStatus" parameterType="java.util.HashMap">
+        UPDATE torrent_info_tbl SET
+        status=#{status}
+        <if test="urls!=null">
+        WHERE post_url IN
+        <foreach collection="urls" open="(" close=")" separator="," item="url">
+          #{url}
+        </foreach>
+        </if>
     </update>
 
     <select id="queryTorrentDTODownloadList" parameterType="java.util.HashMap" resultType="torrentDTO">
@@ -28,6 +44,10 @@
         <if test="count != null">
             #{count}
         </if>
+    </select>
+
+    <select id="queryTitleByHashCode" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT title FROM torrent_info_tbl WHERE hash_code=#{hash_code}
     </select>
 
 

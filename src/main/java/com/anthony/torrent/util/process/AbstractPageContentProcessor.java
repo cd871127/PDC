@@ -42,5 +42,4 @@ public abstract class AbstractPageContentProcessor extends AbstractResponseProce
     }
 
     protected abstract String parse(BufferedReader bufferedReader) throws IOException;
-
 }

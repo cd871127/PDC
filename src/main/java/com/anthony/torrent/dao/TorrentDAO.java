@@ -19,5 +19,9 @@ public interface TorrentDAO {
 
     List<TorrentDTO> queryTorrentDTODownloadList(Map<String, String> param);
 
+    int updateTorrentInfoStatus(Map param);
+
+    String queryTitleByHashCode(String hashCode);
+
 
 }

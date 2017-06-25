@@ -40,17 +40,24 @@ public class TorrentService {
     @Resource
     private TorrentInfoQueue downloadQueue;
 
+    @Resource
+    private PostProcessor postProcessor;
+
+    @Resource
+    private DownloadProcessor downloadProcessor;
+
     public int downloadTorrent(int count) {
         Map<String, String> param = new HashMap<>();
         param.put("status", "0");
         param.put("count", String.valueOf(count));
         List<TorrentDTO> torrentList = torrentDAO.queryTorrentDTODownloadList(param);
-
+        System.out.println(torrentList.get(0));
         //get hashcode
         MultiThreadBrowserMocker<String> postMocker = (MultiThreadBrowserMocker<String>) MultiThreadBrowserMocker.<String>builder()
                 .setThreadCount(SystemConfigParameter.getInstance().getDownloadThreadCount())
                 .setProxy("127.0.0.1", 1080, "http")
-                .setProcessor(new PostProcessor()).build();
+                .setRetryCount(3)
+                .setProcessor(postProcessor).build();
         Map<String, URL> urlMap = new HashMap<>();
         String url;
         final String baseUrl = SystemConfigParameter.getInstance().getCaoLiuBaseUrl();
@@ -69,6 +76,7 @@ public class TorrentService {
 
         //cache error url
         hashMap.forEach((k, v) -> {
+            System.out.println(k+": "+v);
                     if (v == null)
                         errorSet.add(k);
                 }
@@ -76,11 +84,21 @@ public class TorrentService {
         //remove error post from result
         errorSet.forEach(hashMap::remove);
 
+        TorrentDTO torrentDTO = new TorrentDTO();
+        //update hashCode
+        hashMap.forEach((k, v) ->
+        {
+            torrentDTO.setUrl(k);
+            torrentDTO.setHashCode(v);
+            torrentDAO.updateTorrentInfo(torrentDTO);
+        });
+
 
         MultiThreadBrowserMocker<String> m2 = (MultiThreadBrowserMocker<String>) MultiThreadBrowserMocker.<String>builder()
                 .setThreadCount(SystemConfigParameter.getInstance().getDownloadThreadCount())
                 .setProxy("127.0.0.1", 1080, "http")
-                .setProcessor(new DownloadProcessor()).build();
+                .setRetryCount(3)
+                .setProcessor(downloadProcessor).build();
 
 
         String torrentUrl = SystemConfigParameter.getInstance().getTorrentBaseUrl() + "link.php";
@@ -109,8 +127,20 @@ public class TorrentService {
                 }
         );
         errorSet.forEach(resMap::remove);
-        errorSet.forEach(System.out::println);
-        System.out.println(errorSet.size());
+        Map<String, Object> errorMap = new HashMap<>();
+        errorMap.put("status", "2");
+        errorMap.put("urls", errorSet);
+        if(!errorSet.isEmpty())
+        //log error url
+            torrentDAO.updateTorrentInfoStatus(errorMap);
+
+        //log success url
+        Map<String, Object> successMap = new HashMap<>();
+        successMap.put("status", "1");
+        successMap.put("urls", resMap.keySet());
+        if(!resMap.isEmpty())
+            torrentDAO.updateTorrentInfoStatus(successMap);
+
         return resMap.size();
     }
 
