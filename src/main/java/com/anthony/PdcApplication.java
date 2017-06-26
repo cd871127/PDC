@@ -3,6 +3,7 @@ package com.anthony;
 import com.anthony.config.SystemInitializer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * Created by chend on 2017/3/26.1

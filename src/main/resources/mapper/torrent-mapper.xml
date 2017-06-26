@@ -14,11 +14,11 @@
 
     <update id="updateTorrentInfo" parameterType="torrentDTO">
         UPDATE torrent_info_tbl SET
-        <if test="hashCode!=null">
-            hash_code=#{hashCode}
+        <if test="status!=null" >
+            status=#{status}
         </if>
-        <if test="status!=null">
-            ,status=#{status}
+        <if test="hashCode!=null">
+            ,hash_code=#{hashCode}
         </if>
         WHERE post_url=#{url}
     </update>
@@ -40,8 +40,8 @@
         <if test="status != null">
             AND status=#{status}
         </if>
-        limit 0,
         <if test="count != null">
+            limit 0,
             #{count}
         </if>
     </select>

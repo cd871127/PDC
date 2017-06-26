@@ -11,6 +11,7 @@ import com.anthony.torrent.util.process.DownloadProcessor;
 import com.anthony.torrent.util.process.PostProcessor;
 import org.springframework.jdbc.UncategorizedSQLException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.io.InputStream;
@@ -76,7 +77,7 @@ public class TorrentService {
 
         //cache error url
         hashMap.forEach((k, v) -> {
-            System.out.println(k+": "+v);
+                    System.out.println(k + ": " + v);
                     if (v == null)
                         errorSet.add(k);
                 }
@@ -130,15 +131,15 @@ public class TorrentService {
         Map<String, Object> errorMap = new HashMap<>();
         errorMap.put("status", "2");
         errorMap.put("urls", errorSet);
-        if(!errorSet.isEmpty())
-        //log error url
+        if (!errorSet.isEmpty())
+            //log error url
             torrentDAO.updateTorrentInfoStatus(errorMap);
 
         //log success url
         Map<String, Object> successMap = new HashMap<>();
         successMap.put("status", "1");
         successMap.put("urls", resMap.keySet());
-        if(!resMap.isEmpty())
+        if (!resMap.isEmpty())
             torrentDAO.updateTorrentInfoStatus(successMap);
 
         return resMap.size();
@@ -237,5 +238,10 @@ public class TorrentService {
         return importTorrentBookMark(in, "wuhaha");
     }
 
+    @Transactional
+    public void testTransaction() {
+        List<TorrentDTO> li = torrentDAO.queryTorrentDTODownloadList(null);
+        li.forEach((k) -> torrentDAO.updateTorrentInfo(k));
+    }
 
 }

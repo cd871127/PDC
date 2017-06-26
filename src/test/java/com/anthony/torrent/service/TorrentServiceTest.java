@@ -75,4 +75,13 @@ public class TorrentServiceTest {
         torrentDAO.updateTorrentInfoStatus(errorMap);
     }
 
+    @Test
+    public void xingNeng()
+    {
+        long start=System.currentTimeMillis();
+        torrentService.testTransaction();
+        long end=System.currentTimeMillis()-start;
+        System.out.println(end);
+    }
+
 }
